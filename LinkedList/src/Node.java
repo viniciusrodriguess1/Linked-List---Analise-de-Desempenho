@@ -1,9 +1,9 @@
-class Node {
-    int data;
-    Node next;
+public class Node {
+    int valor;
+    Node proximo;
 
-    public Node(int data) {
-        this.data = data;
-        this.next = null;
+    public Node(int valor) {
+        this.valor = valor;
+        this.proximo = null;
     }
 }

@@ -1,65 +1,51 @@
-class LinkedList {
-    private Node head;
+public class LinkedList {
+    private Node cabeça;
 
-    public LinkedList() {
-        this.head = null;
-    }
-
-    // Método para adicionar um nó na posição especificada
-    public void add(int data, int position) {
-        Node newNode = new Node(data);
-
-        if (position == 0) {
-            newNode.next = head;
-            head = newNode;     
-        } else {
-            Node current = head;
-            for (int i = 0; i < position - 1; i++) {
-                if (current == null) {
-                    System.out.println("Posição inválida para adição: " + position);
-                    return;
-                }
-                current = current.next;
-            }
-            newNode.next = current.next;
-            current.next = newNode;
+    public void adicionar(int valor, int pos) {
+        Node newNode = new Node(valor);
+        if (pos == 0 || cabeça == null) {
+            newNode.proximo = cabeça;
+            cabeça = newNode;
+            return;
         }
+        Node atual = cabeça;
+        for (int i = 0; i < pos - 1 && atual.proximo != null; i++) {
+            atual = atual.proximo;
+        }
+        newNode.proximo = atual.proximo;
+        atual.proximo = newNode;
     }
 
-    // Método para remover um nó na posição especificada
-    public void remove(int position) {
-        if (head == null) {
-            System.out.println("Lista vazia. Nenhum elemento para remover.");
+    public void remover(int valor) {
+        if (cabeça == null) return;
+
+        if (cabeça.valor == valor) {
+            cabeça = cabeça.proximo;
             return;
         }
 
-        if (position == 0) {
-            head = head.next;
-        } else {
-            Node current = head;
-            for (int i = 0; i < position - 1; i++) {
-                if (current == null || current.next == null) {
-                    System.out.println("Posição inválida para remoção: " + position);
-                    return;
-                }
-                current = current.next;
-            }
-            if (current.next != null) {
-                current.next = current.next.next;
-            } else {
-                System.out.println("Posição inválida para remoção: " + position);
-            }
+        Node atual = cabeça;
+        while (atual.proximo != null && atual.proximo.valor != valor) {
+            atual = atual.proximo;
+        }
+
+        if (atual.proximo != null) {
+            atual.proximo = atual.proximo.proximo;
         }
     }
 
-    // Método para exibir os elementos da lista
-    public void printList() {
-        Node current = head;
-        System.out.print("Lista: ");
-        while (current != null) {
-            System.out.print(current.data + " ");
-            current = current.next;
+    public void print() {
+        Node atual = cabeça;
+        while (atual != null) {
+            System.out.print(atual.valor + " ");
+            atual = atual.proximo;
         }
         System.out.println();
+    }
+
+    public void inicializarLista(int[] valores) {
+        for (int valor : valores) {
+            adicionar(valor, Integer.MAX_VALUE);
+        }
     }
 }
