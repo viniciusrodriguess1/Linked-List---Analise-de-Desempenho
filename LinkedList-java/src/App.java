@@ -5,7 +5,7 @@ import java.io.IOException;
 public class App {
     public static void main(String[] args) {
         LinkedList lista = new LinkedList();
-        String caminhoArquivo = "arq.txt";
+        String caminhoArquivo = "Linked-List---Analise-de-Desempenho\\arq.txt";
 
         try (BufferedReader br = new BufferedReader(new FileReader(caminhoArquivo))) {
             
@@ -25,7 +25,12 @@ public class App {
                 if (acao.equals("A")) {
                     int numero = Integer.parseInt(operacao[1]);
                     int posicao = Integer.parseInt(operacao[2]);
-                    lista.adicionar(numero, posicao);
+                    if(posicao>arrayInicial.length){
+                        System.out.println("Posição do valor "+ numero +" maior do que o tamanho da lista, valor não inserido");;
+                    }else{
+                     lista.adicionar(numero, posicao);   
+                    }
+                    
                 } else if (acao.equals("R")) {
                     int numero = Integer.parseInt(operacao[1]);
                     lista.remover(numero);
