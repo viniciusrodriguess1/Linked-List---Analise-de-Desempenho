@@ -1,3 +1,7 @@
+const fs = require('fs');
+const path = require('path');
+
+// Definindo a classe Node
 class Node {
     constructor(valor) {
         this.valor = valor;
@@ -5,6 +9,7 @@ class Node {
     }
 }
 
+// Definindo a classe LinkedList
 class LinkedList {
     constructor() {
         this.cabeça = null;
@@ -64,11 +69,11 @@ class LinkedList {
     }
 }
 
-const fs = require('fs');
-
+// Função principal
 function main() {
     const lista = new LinkedList();
-    const caminhoArquivo = "Linked-List---Analise-de-Desempenho/arq.txt";
+    // Corrigindo o caminho do arquivo
+    const caminhoArquivo = path.join('C:', 'Users', 'vinic', 'Área de Trabalho', 'projetos', 'Linked-List---Analise-de-Desempenho', 'LinkedList-javascript', 'arq.txt');
 
     fs.readFile(caminhoArquivo, 'utf8', (err, data) => {
         if (err) {
@@ -76,7 +81,8 @@ function main() {
             return;
         }
 
-        const linhas = data.split("\n");
+        // Processando o arquivo
+        const linhas = data.split("\n").filter(linha => linha.trim() !== ""); // Filtrando linhas em branco
         const valores = linhas[0].split(" ");
         const arrayInicial = valores.map(valor => parseInt(valor));
         lista.inicializarLista(arrayInicial);
@@ -105,4 +111,5 @@ function main() {
     });
 }
 
+// Executando o código
 main();

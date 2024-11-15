@@ -5,7 +5,7 @@ import java.io.IOException;
 public class App {
     public static void main(String[] args) {
         LinkedList lista = new LinkedList();
-        String caminhoArquivo = "Linked-List---Analise-de-Desempenho\\arq.txt";
+        String caminhoArquivo = "C:\\Users\\vinic\\Área de Trabalho\\projetos\\Linked-List---Analise-de-Desempenho\\arq.txt";
 
         try (BufferedReader br = new BufferedReader(new FileReader(caminhoArquivo))) {
             

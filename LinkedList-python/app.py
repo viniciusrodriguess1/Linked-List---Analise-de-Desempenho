@@ -7,13 +7,24 @@ class LinkedList:
     def __init__(self):
         self.cabeça = None
 
-    def adicionar(self, valor, pos):
+    def adicionar(self, valor, pos=None):
         novo_no = Node(valor)
+
+        # Caso seja para adicionar no início
         if pos == 0 or self.cabeça is None:
             novo_no.proximo = self.cabeça
             self.cabeça = novo_no
             return
 
+        # Caso seja para adicionar no final
+        if pos is None:
+            atual = self.cabeça
+            while atual.proximo is not None:
+                atual = atual.proximo
+            atual.proximo = novo_no
+            return
+
+        # Caso seja para adicionar em uma posição específica
         atual = self.cabeça
         for _ in range(pos - 1):
             if atual.proximo is None:
@@ -44,13 +55,21 @@ class LinkedList:
             atual = atual.proximo
         print()
 
+    def tamanho(self):
+        contador = 0
+        atual = self.cabeça
+        while atual is not None:
+            contador += 1
+            atual = atual.proximo
+        return contador
+
     def inicializar_lista(self, valores):
         for valor in valores:
-            self.adicionar(valor, float('inf'))  # Usa float('inf') para simular Integer.MAX_VALUE
+            self.adicionar(valor, None)  # Adiciona no final
 
 def main():
     lista = LinkedList()
-    caminho_arquivo = "Linked-List---Analise-de-Desempenho/arq.txt"
+    caminho_arquivo = r"C:\Users\vinic\Área de Trabalho\projetos\Linked-List---Analise-de-Desempenho\arq-novo.txt"
 
     try:
         with open(caminho_arquivo, 'r') as arquivo:
@@ -67,7 +86,7 @@ def main():
                 if acao == "A":
                     numero = int(operacao[1])
                     posicao = int(operacao[2])
-                    if posicao > len(array_inicial):
+                    if posicao > lista.tamanho():
                         print(f"Posição do valor {numero} maior do que o tamanho da lista, valor não inserido")
                     else:
                         lista.adicionar(numero, posicao)
