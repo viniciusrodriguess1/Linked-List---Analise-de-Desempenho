@@ -25,6 +25,10 @@ class LinkedList:
             return
 
         # Caso seja para adicionar em uma posição específica
+        if pos > self.tamanho():
+            print(f"Posição inválida para adicionar o valor {valor}.")
+            return
+
         atual = self.cabeça
         for _ in range(pos - 1):
             if atual.proximo is None:
@@ -35,6 +39,7 @@ class LinkedList:
 
     def remover(self, valor):
         if self.cabeça is None:
+            print(f"Valor {valor} não encontrado para remoção.")
             return
 
         if self.cabeça.valor == valor:
@@ -47,6 +52,8 @@ class LinkedList:
 
         if atual.proximo is not None:
             atual.proximo = atual.proximo.proximo
+        else:
+            print(f"Valor {valor} não encontrado para remoção.")
 
     def print(self):
         atual = self.cabeça
@@ -86,10 +93,7 @@ def main():
                 if acao == "A":
                     numero = int(operacao[1])
                     posicao = int(operacao[2])
-                    if posicao > lista.tamanho():
-                        print(f"Posição do valor {numero} maior do que o tamanho da lista, valor não inserido")
-                    else:
-                        lista.adicionar(numero, posicao)
+                    lista.adicionar(numero, posicao)
 
                 elif acao == "R":
                     numero = int(operacao[1])

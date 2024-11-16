@@ -5,15 +5,15 @@ import java.io.IOException;
 public class App {
     public static void main(String[] args) {
         LinkedList lista = new LinkedList();
-        String caminhoArquivo = "C:\\Users\\vinic\\Área de Trabalho\\projetos\\Linked-List---Analise-de-Desempenho\\arq.txt";
+        String caminhoArquivo = "C:\\Users\\vinic\\Área de Trabalho\\projetos\\Linked-List---Analise-de-Desempenho\\arq-novo.txt";
 
         try (BufferedReader br = new BufferedReader(new FileReader(caminhoArquivo))) {
             
             String[] valores = br.readLine().split(" ");
             int[] arrayInicial = new int[valores.length];
             for (int i = 0; i < valores.length; i++) {
-                arrayInicial[i] = Integer.parseInt(valores[i]);
-            }
+                arrayInicial[i] = Integer.parseInt(valores[i].trim());
+            }            
             lista.inicializarLista(arrayInicial);
 
             int quantidadeOperacoes = Integer.parseInt(br.readLine());
